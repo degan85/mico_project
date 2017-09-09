@@ -10,7 +10,7 @@ var session = require('express-session');
 var OrientoStore = require('connect-oriento')(session);
 var bodyParser = require('body-parser');
 
-var db_config = require('./config/db-config.json');
+var db_config = require('./config/configfile/db-mico-config.json');
 
 app.use(bodyParser.urlencoded({ extended : false}));
 

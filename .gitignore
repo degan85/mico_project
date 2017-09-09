@@ -1,2 +1,4 @@
+**/configfile/
 auth-config.json
-db-config.json
+db-feelingdb-config.json
+db-mico-config.json

@@ -1,11 +1,12 @@
 module.exports = function (app) {
     var passport = require('passport');
-    var facebook_config = require('../auth-config.json');
+    var facebook_config = require('../configfile/auth-config.json');
     var LocalStrategy = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
     var bkfd2Password = require("pbkdf2-password");
     var hasher = bkfd2Password();
-    var db = require('./db')();
+    var mico = 'mico';
+    var db = require('./db')(mico);
 
     app.use(passport.initialize());
     app.use(passport.session());
