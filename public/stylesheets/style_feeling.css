@@ -1,0 +1,13 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+h1, h2, h3 {
+  text-align: center;
+}
+a {
+  color: #ff58a6;
+}
+input[type=text] {
+  text-align:center;
+}

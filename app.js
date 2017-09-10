@@ -5,14 +5,15 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-
 var session = require('express-session');
+
 var OrientoStore = require('connect-oriento')(session);
 var bodyParser = require('body-parser');
-
 var db_config = require('./config/configfile/db-mico-config.json');
 
 app.use(bodyParser.urlencoded({ extended : false}));
+
+// app.use(express.methodOverride());
 
 app.use(session({
     secret: 'aeoifja12312!@#%@#adfeas',
@@ -25,9 +26,11 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+var feeling = require('./routes/feeling');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+app.use('/feeling', feeling);
 app.use('/', index);
 app.use('/users', users);
 
@@ -62,3 +65,5 @@ module.exports = app;
 // app.listen(3003, function() {
 //     console.log('connected 3003 port!');
 // });
+
+

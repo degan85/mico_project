@@ -5,8 +5,8 @@ module.exports = function (app) {
     var FacebookStrategy = require('passport-facebook').Strategy;
     var bkfd2Password = require("pbkdf2-password");
     var hasher = bkfd2Password();
-    var mico = 'mico';
-    var db = require('./db')(mico);
+    var db_kind = "mico";
+    var db = require('./db')(db_kind);
 
     app.use(passport.initialize());
     app.use(passport.session());
