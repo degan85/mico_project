@@ -4,6 +4,12 @@ block content
     h1= title
 
     p
-        input#serch(type='text')
+        center
+            input#serch(type='text')
+            Button#serchBtn 검색
     p
-        a(href="/feeling/add") 입력
+        center
+            a(href="/feeling/add") 입력
+    div#select_result
+
+    script(src="/javascripts/index.js")

@@ -5,25 +5,14 @@ $(document).ready(function(){
         var title = $('#title').val();
         var feeling = $('#feeling').val();
 
-        // if(!title) {
-        //     alert('타이틀을 입력해주세요');
-        //     return;
-        // }
-        // if(!feeling) {
-        //     alert('느낌을 입력해주세요');
-        //     return;
-        // }
-
-        // $('#output').val(a+b);
-        // $.post(
-        //     '/feeling/add',
-        //     {a:a,b:b},
-        //     function(data) {
-        //         alert('return');
-        //         $('#output').val(data.result);
-        //     },
-        //     'json'
-        // );
+        if(!title) {
+            alert('타이틀을 입력해주세요');
+            return;
+        }
+        if(!feeling) {
+            alert('느낌을 입력해주세요');
+            return;
+        }
 
         $.ajax({
             url: "/feeling/add",
@@ -37,9 +26,10 @@ $(document).ready(function(){
             success: function(data) {
                 alert(data.result);
                 result = data.result;
+                $('input').val('');
             },
             error: function() {
-                // alert('error');
+                 alert('입력중 오류가 발생하였습니다.');
             }
         })
     });
