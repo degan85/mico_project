@@ -43,5 +43,27 @@ router.post('/search',function(req,res) {
     });
 });
 
+router.get('/search/:id',function(req,res) {
+    var search_id = decodeURIComponent(req.params.id);
+    var sql = "select expand( $c ) let " +
+        "$a = (select from V where @rid = :id), " +
+        "$b = (select feeling from E where @rid in (select inE() from Music where @rid=:id)), \n" +
+        "$c = UNIONALL( $a, $b )";
+    console.log("sql",sql);
+    db.query(sql,{params:{id:search_id}}).then(function (result) {
+        console.log(result);
+        res.send({result: result});
+    });
+});
+
+router.post('/search/:id',function(req,res) {
+    var search_id = decodeURIComponent(req.params.id);
+    var sql = "select from V where @rid = :id";
+    console.log("sql",sql);
+    db.query(sql,{params:{id:search_id}}).then(function (result) {
+        console.log(result);
+        res.send({result: result});
+    });
+});
 module.exports = router;
 

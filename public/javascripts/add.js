@@ -24,7 +24,6 @@ $(document).ready(function(){
                     feeling :   feeling
                 },
             success: function(data) {
-                alert(data.result);
                 result = data.result;
                 $('input').val('');
             },

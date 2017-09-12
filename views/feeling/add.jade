@@ -2,14 +2,16 @@ extends feeling_layout
 block content
 
     body
-        p
+        div.form-group
             center
-                input#title(type='text' placeholder='title')
-        p
+            //.col-xs-8
+            input#title.form-control.input-lg(type='text' placeholder='title')
+        div.form-group
             center
-                input#feeling(type='text' placeholder='feeling')
-        p
+            //.col-xs-8
+            input#feeling.form-control.input-lg(type='text' placeholder='feeling')
+        div.form-group
             center
-                button#insertBtn 입력
+                button#insertBtn.btn.btn-primary.btn-block 입력
 
         script(src="/javascripts/add.js")
