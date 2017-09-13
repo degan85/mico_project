@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db_kind = "feeling";
 var db = require('../config/common/db')(db_kind);
-var select_list = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -36,34 +35,31 @@ router.post('/add',function(req,res) {
 router.post('/search',function(req,res) {
     var where_sql = req.body.where_sql;
     var sql = "select from V where @rid in (select in from E where "+where_sql;
-    console.log("sql",sql);
+
     db.query(sql).then(function (result) {
         console.log(result);
         res.send({result: result});
     });
 });
 
-router.get('/search/:id',function(req,res) {
-    var search_id = decodeURIComponent(req.params.id);
-    var sql = "select expand( $c ) let " +
-        "$a = (select from V where @rid = :id), " +
-        "$b = (select feeling from E where @rid in (select inE() from Music where @rid=:id)), \n" +
-        "$c = UNIONALL( $a, $b )";
-    console.log("sql",sql);
-    db.query(sql,{params:{id:search_id}}).then(function (result) {
+router.post('/search/detail',function(req,res) {
+    var rid = req.body.select_id;
+    var sql = "select expand( $c ) let $a = (select from V where @rid = :id), $b = (select feeling from E where @rid in (select inE() from Music where @rid=:id)), $c = UNIONALL( $a, $b )";
+
+    db.query(sql,{params:{id:rid}}).then(function (result) {
         console.log(result);
         res.send({result: result});
     });
 });
 
-router.post('/search/:id',function(req,res) {
-    var search_id = decodeURIComponent(req.params.id);
-    var sql = "select from V where @rid = :id";
-    console.log("sql",sql);
-    db.query(sql,{params:{id:search_id}}).then(function (result) {
-        console.log(result);
-        res.send({result: result});
-    });
-});
+// router.post('/search/:id',function(req,res) {
+//     var search_id = decodeURIComponent(req.params.id);
+//     var sql = "select from V where @rid = :id";
+//     console.log("sql",sql);
+//     db.query(sql,{params:{id:search_id}}).then(function (result) {
+//         console.log(result);
+//         res.send({result: result});
+//     });
+// });
 module.exports = router;
 
