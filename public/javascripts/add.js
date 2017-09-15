@@ -15,8 +15,8 @@ $(document).ready(function(){
         if($class_list.val() === 'Food') {
             $feeling_alcohol.hide();
         }else if($class_list.val() === 'Alcohol') {
-            $feeling_alcohol.show();
-            $feeling_wine.show();
+            $feeling_alcohol.hide();
+            $feeling_wine.hide();
         }else if($class_list.val() === 'Music') {
             $feeling_alcohol.hide();
         }
@@ -49,7 +49,7 @@ $(document).ready(function(){
                 success: function(data) {
                     var result = data.result;
                     if(result === 'false') {
-                        alert('해당 노래가 이미 존재합니다.')
+                        alert('해당 이름이 이미 존재합니다.')
                     }
                     if(result === 'success') {
                         alert('저장되었습니다.');
