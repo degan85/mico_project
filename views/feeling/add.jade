@@ -2,20 +2,53 @@ extends feeling_layout
 block content
 
     body
-        div.form-group
+        if(id === 0)
+            .form-group
+                //label(for='classList') Select list:
+                select#classList.form-control.input-lg
+                        option Music
+                        option Food
+                        option Alcohol
+                        option Location
+                        option Link
+
+        .form-group.feeling.alcohol(hidden)
+            select#alcoholKind.form-control.input-lg
+                option 와인
+                option 막걸리
+                option 맥주
+                option 소주
+                option etc
+
+        .form-group.feeling.wine(hidden)
             center
                 if(id === 0)
-                    input#title.form-control.input-lg(type='text' placeholder='title')
+                    input#variety.form-control.input-lg(type='text' placeholder='나라, 품종')
                 else
-                    input#title.form-control.input-lg(type='text' placeholder='title' value='#{title}' disabled)
+                    input#variety.form-control.input-lg(type='text' placeholder='나라, 품종' value='#{variety}' disabled)
 
-        div.form-group
+        .form-group.feeling
+            center
+                if(id === 0)
+                    input#name.form-control.input-lg(type='text' placeholder='name')
+                else
+                    input#name.form-control.input-lg(type='text' placeholder='name' value='#{name}' disabled)
+
+        .form-group.feeling
             center
                 if(id === 0)
                     input#feeling.form-control.input-lg(type='text' placeholder='feeling')
                 else
                     input#feeling.form-control.input-lg(type='text' placeholder='feeling' value='#{feeling}')
-        div.form-group
+
+        //.form-group.feeling.wine(hidden)
+            center
+                if(id === 0)
+                    input#memo.form-control.input-lg(type='text' placeholder='memo')
+                else
+                    input#memo.form-control.input-lg(type='text' placeholder='memo' value='#{memo}' disabled)
+
+        .form-group
             center
                 if(id === 0)
                     button#insertBtn.btn.btn-primary.btn-block 입력

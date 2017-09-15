@@ -34,22 +34,22 @@ var select_feeling = function (select_id) {
         dataType:'json',
         type:'POST',
         data:{select_id: select_id},
-        success:function (data) {
-            result = data;
-            // console.log(data);
+        success:function (rtn_data) {
+            result = rtn_data;
+            console.log(rtn_data);
             var data = result.result,
                 rid = encodeURIComponent(data[0]['@rid']),
-                title = encodeURIComponent(data[0].title),
+                name = encodeURIComponent(data[0].name),
                 feeling = encodeURIComponent(data[1].feeling);
 
-            var edit_url = '/feeling/add/'+ rid +'/'+ title +'/'+ feeling;
-            var delete_url = '/feeling/delete/'+ rid +'/'+ title +'/'+ feeling;
+            var edit_url = '/feeling/add/'+ rid +'/'+ name +'/'+ feeling;
+            var delete_url = '/feeling/delete/'+ rid +'/'+ name +'/'+ feeling;
             var detail_div = select.children();
-            var detail_text=  'Genre : '+data[0]['@class']+'</br>'
-                + 'Feeling : '+ data[1].feeling+'</br>'
+            var detail_text=  '<br>'+data[0]['@class']+'</br>'
+                + 'Feeling : <font color="#ff69b4">'+ data[1].feeling+'</font></br>'
                 + '<div class="detail_feeling"><a href='+edit_url
                 +' data-rid=' + rid
-                +' data-title=' + title
+                +' data-name=' + name
                 +' data-feeling=' + feeling
                 +'>편집</a>'
                 +'&nbsp&nbsp&nbsp&nbsp<a href='+delete_url+'>삭제</a>'
@@ -78,7 +78,7 @@ var search_feeling = function() {
             for(var i=0; i<data.result.length; i++) {
                 var data_result = data.result[i];
                 var url = "/feeling/search/"+encodeURIComponent(data_result['@rid']);
-                html += '<a href="#" class="list-group-item detail-list" data-id='+data_result["@rid"]+'>'+data_result.title
+                html += '<a href="#" class="list-group-item detail-list" data-id='+data_result["@rid"]+'>'+data_result.name
                     +'<div class="detail" hidden>adsfadsfasdfadsfadsfasdfadf</div></a>';
             }
             // html += '</ul>';
@@ -98,7 +98,7 @@ var search_feeling = function() {
 
 // var edit_click = function (clicked_element) {
 //     var rid = decodeURIComponent(clicked_element.data('rid')),
-//         title = decodeURIComponent(clicked_element.data('title')),
+//         name = decodeURIComponent(clicked_element.data('name')),
 //         feeling = decodeURIComponent(clicked_element.data('feeling'));
 //
 //     $.ajax({
@@ -108,7 +108,7 @@ var search_feeling = function() {
 //         data:
 //             {
 //                 rid     : rid,
-//                 title   : title,
+//                 name   : name,
 //                 feeling : feeling
 //             },
 //         success:function (data) {
