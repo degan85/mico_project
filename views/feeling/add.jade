@@ -4,14 +4,22 @@ block content
     body
         div.form-group
             center
-            //.col-xs-8
-            input#title.form-control.input-lg(type='text' placeholder='title')
+                if(id === 0)
+                    input#title.form-control.input-lg(type='text' placeholder='title')
+                else
+                    input#title.form-control.input-lg(type='text' placeholder='title' value='#{title}' disabled)
+
         div.form-group
             center
-            //.col-xs-8
-            input#feeling.form-control.input-lg(type='text' placeholder='feeling')
+                if(id === 0)
+                    input#feeling.form-control.input-lg(type='text' placeholder='feeling')
+                else
+                    input#feeling.form-control.input-lg(type='text' placeholder='feeling' value='#{feeling}')
         div.form-group
             center
-                button#insertBtn.btn.btn-primary.btn-block 입력
+                if(id === 0)
+                    button#insertBtn.btn.btn-primary.btn-block 입력
+                else
+                    button#updateBtn.btn.btn-primary.btn-block 수정
 
         script(src="/javascripts/add.js")
